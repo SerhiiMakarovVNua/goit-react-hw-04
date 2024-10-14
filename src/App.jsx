@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
@@ -24,19 +23,6 @@ function App() {
     setQuery(newQuery);
     setGallery([]);
     setPage(1);
-  };
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    const form = evt.target;
-    const query = form.elements.search.value;
-
-    if (query.trim() === "") {
-      toast.error('Text must be entered to search for images!', { duration: 2000 });
-      return;
-    }
-    onSearch(query);
-    form.reset();
   };
 
   useEffect(() => {
@@ -81,7 +67,7 @@ function App() {
 return (
   <>
     <div>
-      <SearchBar handleSubmit={handleSubmit} />
+      <SearchBar onSearch={onSearch} />
       {gallery.length > 0 && <ImageGallery items={gallery} onImageClick={openModal} />}
       <ImageModal 
         isOpen={modalIsOpen} 
@@ -93,8 +79,7 @@ return (
       {gallery.length > 0 && !loading && page < totalPages && (<LoadMoreBtn onClick={() => setPage(prevPage => prevPage + 1)} />)}
       {error && <ErrorMessage message={error} />}
       {gallery.length === 0 && !error && query && <ErrorMessage message={`No images found for "${query}". Please try a different search.`} />}
-      <Toaster/>
-      </div>
+    </div>
   </>
 );
 }
