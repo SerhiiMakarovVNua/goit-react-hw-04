@@ -1,0 +1,18 @@
+.loadMoreButton {
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 28px;
+  width: 150px;
+  height: 40px;
+  padding: 0.6em 1.2em;
+  color: #ffffff;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: cadetblue;
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+.loadMoreButton:hover {
+  background-color: #359699;
+}
